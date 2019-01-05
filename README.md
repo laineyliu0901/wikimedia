@@ -4,7 +4,8 @@
 ### Directory Structure
 
 ```
-Pandora CC/
+WikiMedia/
+   |---- Pandora.ipynb(demonstrate the thought process, please take a look at this before dig deep into the codes)
    |---- history/
    |       |---- data that has been downloaded and ingested
    |---- waiting/
@@ -26,9 +27,7 @@ Pandora CC/
 
 ### Running
 
-1. 
-
-2. This project runs with Python 3.6. Install dependencies with
+1. This project runs with Python 3.6. Install dependencies with
 
    ```
    pip install -r requirements.txt
@@ -37,6 +36,6 @@ Pandora CC/
    and then run the following command(make sure you are inside the models folder)
 
    ```
-   python merge.py left_data.csv right_data.csv left_column right_column
+   python wikimedia.py year month day hour
    ```
 
