@@ -11,7 +11,7 @@ WikiMedia/
    |---- waiting/
    |       |---- data that has been downloaded, waiting to be ingested
    |---- database/
-   |       |---- database that store the ingested data, table name: wikimedia
+   |       |---- database that store the ingested data, table name: wikimedia, I am using sqlite here.
    |---- __init__.py
    |---- wikimedia.py
    |---- inputdata.py
@@ -32,7 +32,10 @@ WikiMedia/
    pip install -r requirements.txt
    ```
 
-   and then run the following command(make sure you are inside the wikimedia folder)
+2. please create 3 folders 'history'. 'waiting' and 'database'.
+
+
+3. and then run the following command(make sure you are inside the wikimedia folder)
 
    ```
    python wikimedia.py year month day hour
