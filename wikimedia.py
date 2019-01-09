@@ -69,11 +69,13 @@ def main():
     # check if the file is already downloaded but not in the database
     if check_pattern("./history", file_pattern) > 0:
         logger.info('the file is already downloaded and ingested')
-        file_name = get_file_from_pattern("./history", file_pattern)
+        file_name = get_file_from_pattern(
+            "./history", file_pattern)
 
     elif check_pattern("./waiting", file_pattern) > 0:
         logger.info('the file is already downloaded and not yet ingested')
-        file_name = get_file_from_pattern("./waiting", file_pattern)
+        file_name = get_file_from_pattern(
+            "./waiting", file_pattern)
 
     else:
 
@@ -81,6 +83,7 @@ def main():
         # some file is ending with 0001
         fileURL = file_pattern + "0000.gz"
         outFilePath = fileURL[:-3]
+
         download_wikimedia(monthURL + fileURL, outFilePath)
         move_downloaded_file(outFilePath)
         file_name = outFilePath+'.txt'
@@ -93,9 +96,13 @@ def main():
 
 def download_wikimedia(totalURL, outFilePath):
     response = urllib.request.urlopen(totalURL)
+
     logger.info('downloading the file.......')
+
     with open(outFilePath, 'wb') as outfile:
-        outfile.write(gzip.decompress(response.read()))
+        outfile.write(
+            gzip.decompress(response.read()))
+
     logger.info('file downloaded!!!!')
     return
 

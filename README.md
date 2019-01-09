@@ -17,7 +17,6 @@ WikiMedia/
    |---- inputdata.py
    |---- user.py
    |---- const.py
-   |---- pick.py
    |---- logger.py
    |---- utils.py
    |---- README.md
@@ -33,7 +32,7 @@ WikiMedia/
    pip install -r requirements.txt
    ```
 
-   and then run the following command(make sure you are inside the models folder)
+   and then run the following command(make sure you are inside the wikimedia folder)
 
    ```
    python wikimedia.py year month day hour

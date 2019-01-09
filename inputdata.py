@@ -26,6 +26,7 @@ class InputData(object):
             db = sqlite3.connect(DB_PATH + DB_NAME + '.sqlite3')
             # if the table does not exist, create one
             db.execute('CREATE TABLE IF NOT EXISTS wikimedia (id integer primary key autoincrement not null, language STRING, page_name STRING, non_unique_views INTEGER, timestamp TEXT, last_update datetime default current_timestamp )')
+
             # insert the new data
             logger.info('ingesting the new data.....')
             db.executemany(
@@ -34,6 +35,7 @@ class InputData(object):
             db.commit()
             db.close()
             logger.info('finished ingesting the new data!')
+
             # move the file from waiting to history
             src = self.file_name
             dst = './history/'+self.file_name.split('/')[-1]
@@ -55,9 +57,13 @@ class InputData(object):
 
 def read_file(file_name):
     logger.info('reading the file..........')
+
     df = pd.read_csv(
         file_name,
-        sep=' ', encoding='latin-1', header=None)
+        sep=' ',
+        encoding='latin-1',
+        header=None)
+
     df.columns = [
         'language', 'page_name',
         'non_unique_views', 'bytes_transferred']
@@ -67,7 +73,9 @@ def read_file(file_name):
 def clean_before_ingest(df, newDate):
     df = df[~df['page_name'].str.contains(
         ":", na=False
-        )].dropna(subset=['language']).reset_index(drop=True)
+        )].dropna(
+        subset=['language']
+        ).reset_index(drop=True)
     """
     in case you need to consider the type of the page
     df['type'] = [i.split('.')[1] if len(
@@ -77,5 +85,3 @@ def clean_before_ingest(df, newDate):
     df['timestamp'] = newDate.strftime("%Y/%m/%d %H")
 
     return df.drop(['bytes_transferred'], axis=1)
-
-
